@@ -3,10 +3,17 @@ package com.apptware.interview.singleton;
 
 public class Singleton {
   private static Singleton single_instance = null;
+  private static boolean createdFlag = false;
 
   public String s;
 
   private Singleton() {
+
+   if (createdFlag) {
+	   throw new RuntimeException("Singleton instance already created. Reflection is not allowed.");
+	// custom type exception can be created
+   }
+   createdFlag = true;
     s = "Hello I am a string part of Singleton class";
   }
 
